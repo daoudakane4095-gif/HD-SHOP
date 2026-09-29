@@ -13,7 +13,6 @@
   --bleu-profond: #0f1e3d;
   --bleu-accent: #1a3a6b;
   --blanc: #ffffff;
-  --blanc-casse: #f8f9fb;
   --gris-bleu: #8899aa;
 }
 
@@ -150,9 +149,7 @@ header.scrolled {
   transition: all 0.4s ease;
 }
 
-.logo:hover {
-  text-shadow: 0 0 20px rgba(255,255,255,0.5);
-}
+.logo:hover { text-shadow: 0 0 20px rgba(255,255,255,0.5); }
 
 .logo span { color: var(--gris-bleu); font-weight: 300; }
 
@@ -204,10 +201,7 @@ nav a:hover::after { width: 100%; }
   z-index: -1;
 }
 
-.contact-btn:hover {
-  color: var(--bleu-nuit) !important;
-}
-
+.contact-btn:hover { color: var(--bleu-nuit) !important; }
 .contact-btn:hover::before { transform: translateX(0); }
 
 /* Menu burger */
@@ -232,7 +226,8 @@ nav a:hover::after { width: 100%; }
 .burger.active span:nth-child(2) { opacity: 0; }
 .burger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
-/* ================= HERO ================= */
+/* ================= SECTION ACC;
+UEIL (HERO) ================= */
 .hero {
   min-height: 100vh;
   min-height: 100dvh;
@@ -294,8 +289,7 @@ nav a:hover::after { width: 100%; }
 
 .hero h1 {
   font-size: clamp(2.2rem, 8vw, 6rem);
-  font-weight: 300;
-  line-height: 1.05;
+  font-weight: 300  line-height: 1.05;
   margin-bottom: 30px;
   letter-spacing: 2px;
   color: var(--blanc);
@@ -394,7 +388,7 @@ nav a:hover::after { width: 100%; }
   opacity: 0.3;
 }
 
-/* ================= PRODUITS ================= */
+/* ================= SECTION COLLECTION ================= */
 .products {
   padding: 80px 60px 120px;
   max-width: 1400px;
@@ -518,7 +512,7 @@ nav a:hover::after { width: 100%; }
   opacity: 0.9;
 }
 
-/* ================= BANNIÈRE EXCLUSIVE ================= */
+/* ================= SECTION EXCLUSIF ================= */
 .exclusive {
   padding: 120px 40px;
   text-align: center;
@@ -572,7 +566,7 @@ nav a:hover::after { width: 100%; }
   animation: none;
 }
 
-/* ================= CONTACT ================= */
+/* ================= SECTION CONTACT ================= */
 .contact {
   padding: 120px 40px;
   background: var(--bleu-nuit);
@@ -835,7 +829,7 @@ footer p {
 <header id="header">
   <div class="logo">HD<span>·SHOP</span></div>
   <nav id="nav">
-    <a href="#" class="nav-link">Accueil</a>
+    <a href="#accueil" class="nav-link">Accueil</a>
     <a href="#collection" class="nav-link">Collection</a>
     <a href="#exclusif" class="nav-link">Exclusif</a>
     <a href="#contact" class="nav-link">Contact</a>
@@ -848,8 +842,8 @@ footer p {
   </div>
 </header>
 
-<!-- ================= HERO ================= -->
-<section class="hero">
+<!-- ================= SECTION ACCUEIL ================= -->
+<section class="hero" id="accueil">
   <div class="hero-content">
     <div class="hero-label">Collection Exclusive 2025</div>
     <h1>L'élégance <em>redéfinie</em><br>pour vous</h1>
@@ -860,7 +854,7 @@ footer p {
 
 <div class="divider">✦ ✦ ✦</div>
 
-<!-- ================= PRODUITS ================= -->
+<!-- ================= SECTION COLLECTION ================= -->
 <section class="products" id="collection">
   <div class="section-header">
     <span class="label">Notre Sélection</span>
@@ -894,14 +888,14 @@ footer p {
   </div>
 </section>
 
-<!-- ================= BANNIÈRE EXCLUSIVE ================= -->
+<!-- ================= SECTION EXCLUSIF ================= -->
 <section class="exclusive" id="exclusif">
   <h2>Accès <em>exclusif</em></h2>
   <p>Rejoignez notre cercle privé et accédez en avant-première aux collections les plus rares.</p>
   <a href="https://wa.me/22248529407?text=Bonjour%20HD-SHOP%20%E2%9C%A8%2C%20je%20souhaite%20rejoindre%20le%20cercle%20priv%C3%A9%20exclusif." target="_blank" class="btn">Rejoindre le cercle</a>
 </section>
 
-<!-- ================= CONTACT ================= -->
+<!-- ================= SECTION CONTACT ================= -->
 <section class="contact" id="contact">
   <span class="label">Contactez-nous</span>
   <h2>Parlons de votre <em>projet</em></h2>
@@ -964,18 +958,4 @@ burger.addEventListener('click', () => {
   nav.classList.toggle('active');
 });
 
-document.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', () => {
-    burger.classList.remove('active');
-    nav.classList.remove('active');
-  });
-});
-
-// ============ ANIMATION CARTES AU SCROLL ============
-const cards = document.querySelectorAll('.card');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('show'), i * 150);
-    }
-  });
+document

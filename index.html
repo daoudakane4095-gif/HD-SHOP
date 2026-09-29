@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HD-SHOP — Maison de Luxe</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
@@ -13,6 +13,7 @@
   --bleu-profond: #0f1e3d;
   --bleu-accent: #1a3a6b;
   --blanc: #ffffff;
+  --blanc-casse: #f8f9fb;
   --gris-bleu: #8899aa;
 }
 
@@ -29,11 +30,11 @@ body {
 
 h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
 
-/* ================= INTRO CINÉMATIQUE ================= */
+/* ================= INTRO ================= */
 #intro {
   position: fixed;
   inset: 0;
-  background: radial-gradient(ellipse at center, var(--bleu-profond) 0%, var(--bleu-nuit) 70%);
+  background: var(--bleu-nuit);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,25 +42,6 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
   z-index: 9999;
   transition: opacity 1.5s ease, visibility 1.5s ease;
   padding: 20px;
-  overflow: hidden;
-}
-
-#intro::before {
-  content: '';
-  position: absolute;
-  width: 600px; height: 600px;
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 50%;
-  animation: rotate 25s linear infinite;
-}
-
-#intro::after {
-  content: '';
-  position: absolute;
-  width: 400px; height: 400px;
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 50%;
-  animation: rotate 20s linear infinite reverse;
 }
 
 #intro.hide { opacity: 0; visibility: hidden; }
@@ -74,8 +56,7 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
   padding-left: clamp(8px, 3vw, 20px);
   opacity: 0;
   animation: fadeIn 1.5s ease 0.3s forwards;
-  text-shadow: 0 0 40px rgba(255,255,255,0.3), 0 0 80px rgba(255,255,255,0.1);
-  z-index: 2;
+  text-shadow: 0 0 40px rgba(255,255,255,0.15);
 }
 
 .intro-logo::before,
@@ -85,7 +66,7 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
   top: 50%;
   width: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--blanc), transparent);
+  background: var(--blanc);
   transition: width 1.5s ease;
 }
 
@@ -93,7 +74,7 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
 .intro-logo::after { left: 100%; margin-left: 20px; }
 
 .intro-logo.expand::before,
-.intro-logo.expand::after { width: 60px; }
+.intro-logo.expand::after { width: 50px; }
 
 .intro-sub {
   margin-top: 25px;
@@ -106,17 +87,11 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
   animation: fadeIn 1.5s ease 1.3s forwards;
   padding-left: 5px;
   text-align: center;
-  z-index: 2;
 }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 /* ================= HEADER ================= */
@@ -146,10 +121,7 @@ header.scrolled {
   letter-spacing: 8px;
   color: var(--blanc);
   padding-left: 8px;
-  transition: all 0.4s ease;
 }
-
-.logo:hover { text-shadow: 0 0 20px rgba(255,255,255,0.5); }
 
 .logo span { color: var(--gris-bleu); font-weight: 300; }
 
@@ -178,31 +150,21 @@ nav a::after {
 
 nav a:hover::after { width: 100%; }
 
+/* Bouton contact header */
 .contact-btn {
   border: 1px solid var(--blanc);
   padding: 10px 20px;
   font-size: 0.7rem !important;
   letter-spacing: 2px !important;
   transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
 }
 
 .contact-btn::after { display: none; }
 
-.contact-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
+.contact-btn:hover {
   background: var(--blanc);
-  transform: translateX(-101%);
-  transition: transform 0.4s ease;
-  z-index: -1;
+  color: var(--bleu-nuit) !important;
 }
-
-.contact-btn:hover { color: var(--bleu-nuit) !important; }
-.contact-btn:hover::before { transform: translateX(0); }
 
 /* Menu burger */
 .burger {
@@ -226,8 +188,7 @@ nav a:hover::after { width: 100%; }
 .burger.active span:nth-child(2) { opacity: 0; }
 .burger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
-/* ================= SECTION ACC;
-UEIL (HERO) ================= */
+/* ================= HERO ================= */
 .hero {
   min-height: 100vh;
   min-height: 100dvh;
@@ -245,25 +206,24 @@ UEIL (HERO) ================= */
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, rgba(255,255,255,0.06) 0%, transparent 60%);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.05) 0%, transparent 60%);
   pointer-events: none;
-  animation: glow 4s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-  from { opacity: 0.6; }
-  to { opacity: 1; }
 }
 
 .hero::after {
   content: '';
   position: absolute;
-  top: 15%; left: 8%;
-  width: 450px; height: 450px;
-  border: 1px solid rgba(255,255,255,0.12);
+  top: 20%; left: 10%;
+  width: 400px; height: 400px;
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 50%;
   animation: rotate 30s linear infinite;
   pointer-events: none;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .hero-content { position: relative; z-index: 2; max-width: 950px; }
@@ -272,30 +232,21 @@ UEIL (HERO) ================= */
   font-size: 0.7rem;
   letter-spacing: 10px;
   color: var(--blanc);
-  opacity: 0;
+  opacity: 0.7;
   text-transform: uppercase;
   margin-bottom: 30px;
   animation: fadeIn 1.2s ease 0.5s forwards;
-  position: relative;
-  display: inline-block;
-}
-
-.hero-label::before,
-.hero-label::after {
-  content: '✦';
-  margin: 0 15px;
-  opacity: 0.5;
 }
 
 .hero h1 {
   font-size: clamp(2.2rem, 8vw, 6rem);
-  font-weight: 300  line-height: 1.05;
+  font-weight: 300;
+  line-height: 1.1;
   margin-bottom: 30px;
   letter-spacing: 2px;
   color: var(--blanc);
   opacity: 0;
   animation: fadeIn 1.2s ease 0.8s forwards;
-  text-shadow: 0 0 60px rgba(255,255,255,0.1);
 }
 
 .hero h1 em {
@@ -310,7 +261,7 @@ UEIL (HERO) ================= */
   position: absolute;
   bottom: 5px; left: 0;
   width: 100%; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  background: rgba(255,255,255,0.4);
 }
 
 .hero p {
@@ -341,7 +292,7 @@ UEIL (HERO) ================= */
   background: transparent;
   position: relative;
   overflow: hidden;
-  transition: color 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+  transition: color 0.5s ease;
   opacity: 0;
   animation: fadeIn 1.2s ease 1.4s forwards;
   cursor: pointer;
@@ -358,12 +309,7 @@ UEIL (HERO) ================= */
   z-index: -1;
 }
 
-.btn:hover {
-  color: var(--bleu-nuit);
-  transform: translateY(-3px);
-  box-shadow: 0 20px 40px rgba(255,255,255,0.15);
-}
-
+.btn:hover { color: var(--bleu-nuit); }
 .btn:hover::before { transform: translateX(0); }
 
 /* ================= SÉPARATEUR ================= */
@@ -388,7 +334,7 @@ UEIL (HERO) ================= */
   opacity: 0.3;
 }
 
-/* ================= SECTION COLLECTION ================= */
+/* ================= PRODUITS ================= */
 .products {
   padding: 80px 60px 120px;
   max-width: 1400px;
@@ -452,26 +398,15 @@ UEIL (HERO) ================= */
   transition: transform 0.8s ease;
 }
 
-.card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  pointer-events: none;
-}
-
 .card.show { opacity: 1; transform: translateY(0); }
 
 .card:hover {
   border-color: rgba(255, 255, 255, 0.4);
-  transform: translateY(-12px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255,255,255,0.05);
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
 }
 
 .card:hover::before { transform: translateX(0); }
-.card:hover::after { opacity: 1; }
 
 .card .emoji {
   font-size: 3rem;
@@ -481,7 +416,7 @@ UEIL (HERO) ================= */
   transition: all 0.5s ease;
 }
 
-.card:hover .emoji { transform: scale(1.2) rotate(-5deg); filter: grayscale(0); }
+.card:hover .emoji { transform: scale(1.15); filter: grayscale(0); }
 
 .card h3 {
   font-size: 1.6rem;
@@ -489,10 +424,7 @@ UEIL (HERO) ================= */
   letter-spacing: 3px;
   margin-bottom: 15px;
   color: var(--blanc);
-  transition: letter-spacing 0.5s ease;
 }
-
-.card:hover h3 { letter-spacing: 5px; }
 
 .card .desc {
   color: #ffffff77;
@@ -512,7 +444,7 @@ UEIL (HERO) ================= */
   opacity: 0.9;
 }
 
-/* ================= SECTION EXCLUSIF ================= */
+/* ================= BANNIÈRE EXCLUSIVE ================= */
 .exclusive {
   padding: 120px 40px;
   text-align: center;
@@ -529,11 +461,10 @@ UEIL (HERO) ================= */
   border: 1px solid rgba(255, 255, 255, 0.15);
   transform: rotate(45deg);
   pointer-events: none;
-  animation: rotate 40s linear infinite;
 }
 
 .exclusive::before { top: -100px; left: -100px; }
-.exclusive::after { bottom: -100px; right: -100px; animation-direction: reverse; }
+.exclusive::after { bottom: -100px; right: -100px; }
 
 .exclusive h2 {
   font-size: clamp(1.6rem, 4vw, 3rem);
@@ -541,8 +472,6 @@ UEIL (HERO) ================= */
   letter-spacing: 5px;
   margin-bottom: 25px;
   color: var(--blanc);
-  position: relative;
-  z-index: 2;
 }
 
 .exclusive h2 em { color: var(--blanc); font-style: italic; opacity: 0.9; }
@@ -555,35 +484,14 @@ UEIL (HERO) ================= */
   margin: 0 auto 40px;
   line-height: 2;
   font-weight: 200;
-  position: relative;
-  z-index: 2;
 }
 
-.exclusive .btn {
-  position: relative;
-  z-index: 2;
-  opacity: 1;
-  animation: none;
-}
-
-/* ================= SECTION CONTACT ================= */
+/* ================= CONTACT ================= */
 .contact {
   padding: 120px 40px;
   background: var(--bleu-nuit);
   text-align: center;
   position: relative;
-  overflow: hidden;
-}
-
-.contact::before {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
-  pointer-events: none;
-  animation: glow 5s ease-in-out infinite alternate;
 }
 
 .contact .label {
@@ -594,8 +502,6 @@ UEIL (HERO) ================= */
   text-transform: uppercase;
   margin-bottom: 20px;
   display: block;
-  position: relative;
-  z-index: 2;
 }
 
 .contact h2 {
@@ -603,8 +509,6 @@ UEIL (HERO) ================= */
   font-weight: 300;
   letter-spacing: 3px;
   margin-bottom: 20px;
-  position: relative;
-  z-index: 2;
 }
 
 .contact h2 em { font-style: italic; opacity: 0.9; }
@@ -617,11 +521,9 @@ UEIL (HERO) ================= */
   margin: 0 auto 50px;
   line-height: 1.9;
   font-weight: 200;
-  position: relative;
-  z-index: 2;
 }
 
-.contact-whatsapp {
+.contact-phone {
   display: inline-flex;
   align-items: center;
   gap: 20px;
@@ -630,17 +532,16 @@ UEIL (HERO) ================= */
   text-decoration: none;
   color: var(--blanc);
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.1rem, 3vw, 1.6rem);
-  letter-spacing: 3px;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  letter-spacing: 4px;
   font-weight: 400;
   transition: all 0.5s ease;
   position: relative;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.02);
-  z-index: 2;
 }
 
-.contact-whatsapp::before {
+.contact-phone::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -650,21 +551,19 @@ UEIL (HERO) ================= */
   z-index: -1;
 }
 
-.contact-whatsapp:hover {
+.contact-phone:hover {
   color: var(--bleu-nuit);
   border-color: var(--blanc);
   transform: translateY(-3px);
-  box-shadow: 0 20px 40px rgba(255,255,255,0.15);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
-.contact-whatsapp:hover::before { transform: translateY(0); }
+.contact-phone:hover::before { transform: translateY(0); }
 
-.contact-whatsapp .icon {
-  font-size: 1.6rem;
-  transition: transform 0.4s ease;
+.contact-phone .icon {
+  font-size: 1.5rem;
+  filter: grayscale(1) brightness(2);
 }
-
-.contact-whatsapp:hover .icon { transform: scale(1.2) rotate(-10deg); }
 
 .contact-hours {
   margin-top: 30px;
@@ -673,8 +572,6 @@ UEIL (HERO) ================= */
   letter-spacing: 4px;
   text-transform: uppercase;
   font-weight: 200;
-  position: relative;
-  z-index: 2;
 }
 
 /* ================= FOOTER ================= */
@@ -693,20 +590,17 @@ footer .brand {
   margin-bottom: 20px;
 }
 
-footer .footer-link {
+footer .footer-phone {
   color: #ffffff99;
   font-size: 0.85rem;
   letter-spacing: 3px;
   margin-bottom: 20px;
   text-decoration: none;
   display: inline-block;
-  transition: all 0.3s ease;
+  transition: color 0.3s;
 }
 
-footer .footer-link:hover {
-  color: var(--blanc);
-  letter-spacing: 4px;
-}
+footer .footer-phone:hover { color: var(--blanc); }
 
 footer p {
   color: #ffffff55;
@@ -716,35 +610,35 @@ footer p {
   font-weight: 200;
 }
 
-/* ================= WHATSAPP FLOTTANT ================= */
+/* ================= WHATSAPP FLOAT ================= */
 .whatsapp-float {
   position: fixed;
   bottom: 25px;
   right: 25px;
   width: 60px;
   height: 60px;
-  background: #25D366;
-  color: var(--blanc);
+  background: var(--blanc);
+  color: var(--bleu-nuit);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   text-decoration: none;
-  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
   z-index: 90;
   transition: all 0.4s ease;
   animation: pulse 2s ease-in-out infinite;
 }
 
 .whatsapp-float:hover {
-  transform: scale(1.15) rotate(8deg);
-  box-shadow: 0 15px 40px rgba(37, 211, 102, 0.8);
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 15px 40px rgba(255,255,255,0.3);
 }
 
 @keyframes pulse {
-  0%, 100% { box-shadow: 0 10px 30px rgba(37,211,102,0.5), 0 0 0 0 rgba(37,211,102,0.7); }
-  50% { box-shadow: 0 10px 30px rgba(37,211,102,0.5), 0 0 0 20px rgba(37,211,102,0); }
+  0%, 100% { box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 0 0 rgba(255,255,255,0.4); }
+  50% { box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 0 15px rgba(255,255,255,0); }
 }
 
 /* ================= MOBILE ================= */
@@ -774,7 +668,10 @@ footer p {
 
   nav.active { right: 0; }
 
-  nav a { font-size: 1rem; letter-spacing: 4px; }
+  nav a {
+    font-size: 1rem;
+    letter-spacing: 4px;
+  }
 
   nav a.contact-btn {
     padding: 14px 30px;
@@ -794,7 +691,7 @@ footer p {
   .exclusive::before, .exclusive::after { width: 180px; height: 180px; }
 
   .contact { padding: 80px 25px; }
-  .contact-whatsapp {
+  .contact-phone {
     padding: 20px 30px;
     letter-spacing: 2px;
     flex-direction: column;
@@ -806,14 +703,14 @@ footer p {
     height: 55px;
     bottom: 20px;
     right: 20px;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 }
 
 @media (max-width: 400px) {
   .logo { font-size: 1.1rem; letter-spacing: 4px; }
   .hero h1 { letter-spacing: 1px; }
-  .contact-whatsapp { font-size: 1rem; padding: 18px 20px; }
+  .contact-phone { font-size: 1.1rem; padding: 18px 20px; }
 }
 </style>
 </head>
@@ -829,7 +726,7 @@ footer p {
 <header id="header">
   <div class="logo">HD<span>·SHOP</span></div>
   <nav id="nav">
-    <a href="#accueil" class="nav-link">Accueil</a>
+    <a href="#" class="nav-link">Accueil</a>
     <a href="#collection" class="nav-link">Collection</a>
     <a href="#exclusif" class="nav-link">Exclusif</a>
     <a href="#contact" class="nav-link">Contact</a>
@@ -842,8 +739,8 @@ footer p {
   </div>
 </header>
 
-<!-- ================= SECTION ACCUEIL ================= -->
-<section class="hero" id="accueil">
+<!-- ================= HERO ================= -->
+<section class="hero">
   <div class="hero-content">
     <div class="hero-label">Collection Exclusive 2025</div>
     <h1>L'élégance <em>redéfinie</em><br>pour vous</h1>
@@ -854,7 +751,7 @@ footer p {
 
 <div class="divider">✦ ✦ ✦</div>
 
-<!-- ================= SECTION COLLECTION ================= -->
+<!-- ================= PRODUITS ================= -->
 <section class="products" id="collection">
   <div class="section-header">
     <span class="label">Notre Sélection</span>
@@ -888,22 +785,20 @@ footer p {
   </div>
 </section>
 
-<!-- ================= SECTION EXCLUSIF ================= -->
+<!-- ================= BANNIÈRE EXCLUSIVE ================= -->
 <section class="exclusive" id="exclusif">
   <h2>Accès <em>exclusif</em></h2>
   <p>Rejoignez notre cercle privé et accédez en avant-première aux collections les plus rares.</p>
   <a href="https://wa.me/22248529407?text=Bonjour%20HD-SHOP%20%E2%9C%A8%2C%20je%20souhaite%20rejoindre%20le%20cercle%20priv%C3%A9%20exclusif." target="_blank" class="btn">Rejoindre le cercle</a>
 </section>
 
-<!-- ================= SECTION CONTACT ================= -->
+<!-- ================= CONTACT ================= -->
 <section class="contact" id="contact">
   <span class="label">Contactez-nous</span>
   <h2>Parlons de votre <em>projet</em></h2>
-  <p>Notre équipe est à votre écoute sur WhatsApp pour toute demande d'information ou de commande personnalisée.</p>
+  <p>Notre équipe est à votre disposition pour toute demande d'information ou de commande personnalisée.</p>
 
-  <a href="https://wa.me/22248529407?text=Bonjour%20HD-SHOP%20%F0%9F%91%8B%2C%20je%20viens%20de%20votre%20site%20web%20et%20je%20souhaite%20avoir%20des%20informations%20sur%20vos%20produits." 
-     target="_blank" 
-     class="contact-whatsapp">
+  <a href="https://wa.me/22248529407?text=Bonjour%20HD-SHOP%20%F0%9F%91%8B%2C%20je%20viens%20de%20votre%20site%20web%20et%20je%20souhaite%20avoir%20des%20informations%20sur%20vos%20produits." target="_blank" class="contact-phone">
     <span class="icon">💬</span>
     <span>Discuter sur WhatsApp</span>
   </a>
@@ -914,24 +809,17 @@ footer p {
 <!-- ================= FOOTER ================= -->
 <footer>
   <div class="brand">HD · SHOP</div>
-  <a href="https://wa.me/22248529407?text=Bonjour%20HD-SHOP%20%F0%9F%91%8B%2C%20je%20viens%20de%20votre%20site%20web." 
-     target="_blank" 
-     class="footer-link">
-    💬 +222 48 52 94 07
-  </a>
+  <a href="https://wa.me/22248529407?text=Bonjour%20HD-SHOP%20%F0%9F%91%8B%2C%20je%20viens%20de%20votre%20site%20web." target="_blank" class="footer-phone">💬 +222 48 52 94 07</a>
   <p>© 2025 — Tous droits réservés</p>
 </footer>
 
-<!-- ================= WHATSAPP FLOTTANT ================= -->
-<a href="https://wa.me/22248529407?text=Bonjour%20HD-SHOP%20%F0%9F%91%8B%2C%20je%20viens%20de%20votre%20site%20web%20et%20je%20souhaite%20avoir%20des%20informations%20sur%20vos%20produits." 
-   target="_blank" 
-   class="whatsapp-float" 
-   aria-label="Contacter sur WhatsApp">
+<!-- ================= WHATSAPP FLOAT ================= -->
+<a href="https://wa.me/22248529407?text=Bonjour%20HD-SHOP%20%F0%9F%91%8B%2C%20je%20viens%20de%20votre%20site%20web%20et%20je%20souhaite%20avoir%20des%20informations%20sur%20vos%20produits." target="_blank" class="whatsapp-float" aria-label="WhatsApp">
   💬
 </a>
 
 <script>
-// ============ INTRO CINÉMATIQUE ============
+// Intro cinématique
 window.addEventListener('load', () => {
   setTimeout(() => {
     document.getElementById('introLogo').classList.add('expand');
@@ -942,14 +830,14 @@ window.addEventListener('load', () => {
   }, 3500);
 });
 
-// ============ HEADER AU SCROLL ============
+// Header au scroll
 window.addEventListener('scroll', () => {
   const header = document.getElementById('header');
   if (window.scrollY > 50) header.classList.add('scrolled');
   else header.classList.remove('scrolled');
 });
 
-// ============ MENU BURGER ============
+// Menu burger
 const burger = document.getElementById('burger');
 const nav = document.getElementById('nav');
 
@@ -958,4 +846,26 @@ burger.addEventListener('click', () => {
   nav.classList.toggle('active');
 });
 
-document
+// Fermer le menu au clic d'un lien
+document.querySelectorAll('.nav-link, .contact-btn').forEach(link => {
+  link.addEventListener('click', () => {
+    burger.classList.remove('active');
+    nav.classList.remove('active');
+  });
+});
+
+// Animation cartes au scroll
+const cards = document.querySelectorAll('.card');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('show'), i * 150);
+    }
+  });
+}, { threshold: 0.15 });
+
+cards.forEach(card => observer.observe(card));
+</script>
+
+</body>
+</html>

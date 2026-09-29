@@ -6,7 +6,7 @@
 <title>HD-SHOP — Maison de Luxe</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 :root {
   --bleu-nuit: #0a1428;
@@ -16,6 +16,8 @@
   --blanc-casse: #f8f9fb;
   --gris-bleu: #8899aa;
 }
+
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--bleu-nuit);
@@ -28,7 +30,7 @@ body {
 
 h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
 
-/* ================= INTRO LUXE ================= */
+/* ================= INTRO ================= */
 #intro {
   position: fixed;
   inset: 0;
@@ -39,18 +41,19 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
   justify-content: center;
   z-index: 9999;
   transition: opacity 1.5s ease, visibility 1.5s ease;
+  padding: 20px;
 }
 
 #intro.hide { opacity: 0; visibility: hidden; }
 
 .intro-logo {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3rem, 10vw, 7rem);
+  font-size: clamp(2.5rem, 14vw, 7rem);
   font-weight: 300;
-  letter-spacing: 20px;
+  letter-spacing: clamp(8px, 3vw, 20px);
   color: var(--blanc);
   position: relative;
-  padding-left: 20px;
+  padding-left: clamp(8px, 3vw, 20px);
   opacity: 0;
   animation: fadeIn 1.5s ease 0.3s forwards;
   text-shadow: 0 0 40px rgba(255,255,255,0.15);
@@ -67,22 +70,23 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
   transition: width 1.5s ease;
 }
 
-.intro-logo::before { right: 100%; margin-right: 30px; }
-.intro-logo::after { left: 100%; margin-left: 30px; }
+.intro-logo::before { right: 100%; margin-right: 20px; }
+.intro-logo::after { left: 100%; margin-left: 20px; }
 
 .intro-logo.expand::before,
-.intro-logo.expand::after { width: 80px; }
+.intro-logo.expand::after { width: 50px; }
 
 .intro-sub {
-  margin-top: 30px;
-  font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+  margin-top: 25px;
+  font-size: clamp(0.6rem, 2.5vw, 0.9rem);
   font-weight: 300;
-  letter-spacing: 12px;
+  letter-spacing: clamp(5px, 2vw, 12px);
   color: #ffffff88;
   text-transform: uppercase;
   opacity: 0;
   animation: fadeIn 1.5s ease 1.3s forwards;
-  padding-left: 12px;
+  padding-left: 5px;
+  text-align: center;
 }
 
 @keyframes fadeIn {
@@ -94,7 +98,7 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
 header {
   position: fixed;
   top: 0; left: 0; right: 0;
-  padding: 30px 60px;
+  padding: 25px 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -104,8 +108,8 @@ header {
 }
 
 header.scrolled {
-  padding: 18px 60px;
-  background: rgba(10, 20, 40, 0.92);
+  padding: 15px 60px;
+  background: rgba(10, 20, 40, 0.95);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -144,12 +148,50 @@ nav a::after {
   transform: translateX(-50%);
 }
 
-nav a:hover { color: var(--blanc); }
 nav a:hover::after { width: 100%; }
+
+/* Bouton contact header */
+.contact-btn {
+  border: 1px solid var(--blanc);
+  padding: 10px 20px;
+  font-size: 0.7rem !important;
+  letter-spacing: 2px !important;
+  transition: all 0.4s ease;
+}
+
+.contact-btn::after { display: none; }
+
+.contact-btn:hover {
+  background: var(--blanc);
+  color: var(--bleu-nuit) !important;
+}
+
+/* Menu burger */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 200;
+  padding: 8px;
+}
+
+.burger span {
+  width: 28px;
+  height: 2px;
+  background: var(--blanc);
+  transition: all 0.4s ease;
+  transform-origin: center;
+}
+
+.burger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+.burger.active span:nth-child(2) { opacity: 0; }
+.burger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
 /* ================= HERO ================= */
 .hero {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -176,6 +218,7 @@ nav a:hover::after { width: 100%; }
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 50%;
   animation: rotate 30s linear infinite;
+  pointer-events: none;
 }
 
 @keyframes rotate {
@@ -196,9 +239,9 @@ nav a:hover::after { width: 100%; }
 }
 
 .hero h1 {
-  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-size: clamp(2.2rem, 8vw, 6rem);
   font-weight: 300;
-  line-height: 1.05;
+  line-height: 1.1;
   margin-bottom: 30px;
   letter-spacing: 2px;
   color: var(--blanc);
@@ -222,7 +265,7 @@ nav a:hover::after { width: 100%; }
 }
 
 .hero p {
-  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  font-size: clamp(0.85rem, 1.5vw, 1.05rem);
   color: #ffffff99;
   margin-bottom: 50px;
   font-weight: 200;
@@ -315,7 +358,7 @@ nav a:hover::after { width: 100%; }
 }
 
 .section-header h2 {
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
   font-weight: 300;
   letter-spacing: 3px;
   color: var(--blanc);
@@ -329,8 +372,8 @@ nav a:hover::after { width: 100%; }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
 }
 
 .card {
@@ -373,10 +416,7 @@ nav a:hover::after { width: 100%; }
   transition: all 0.5s ease;
 }
 
-.card:hover .emoji {
-  transform: scale(1.15);
-  filter: grayscale(0);
-}
+.card:hover .emoji { transform: scale(1.15); filter: grayscale(0); }
 
 .card h3 {
   font-size: 1.6rem;
@@ -420,13 +460,14 @@ nav a:hover::after { width: 100%; }
   width: 300px; height: 300px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   transform: rotate(45deg);
+  pointer-events: none;
 }
 
 .exclusive::before { top: -100px; left: -100px; }
 .exclusive::after { bottom: -100px; right: -100px; }
 
 .exclusive h2 {
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: clamp(1.6rem, 4vw, 3rem);
   font-weight: 300;
   letter-spacing: 5px;
   margin-bottom: 25px;
@@ -445,6 +486,94 @@ nav a:hover::after { width: 100%; }
   font-weight: 200;
 }
 
+/* ================= CONTACT ================= */
+.contact {
+  padding: 120px 40px;
+  background: var(--bleu-nuit);
+  text-align: center;
+  position: relative;
+}
+
+.contact .label {
+  font-size: 0.7rem;
+  letter-spacing: 10px;
+  color: var(--blanc);
+  opacity: 0.6;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.contact h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 300;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+.contact h2 em { font-style: italic; opacity: 0.9; }
+
+.contact p {
+  color: #ffffff88;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  max-width: 500px;
+  margin: 0 auto 50px;
+  line-height: 1.9;
+  font-weight: 200;
+}
+
+.contact-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding: 25px 50px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+  color: var(--blanc);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  letter-spacing: 4px;
+  font-weight: 400;
+  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.contact-phone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--blanc);
+  transform: translateY(101%);
+  transition: transform 0.5s ease;
+  z-index: -1;
+}
+
+.contact-phone:hover {
+  color: var(--bleu-nuit);
+  border-color: var(--blanc);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.contact-phone:hover::before { transform: translateY(0); }
+
+.contact-phone .icon {
+  font-size: 1.5rem;
+  filter: grayscale(1) brightness(2);
+}
+
+.contact-hours {
+  margin-top: 30px;
+  color: #ffffff66;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 200;
+}
+
 /* ================= FOOTER ================= */
 footer {
   text-align: center;
@@ -458,8 +587,20 @@ footer .brand {
   font-size: 1.3rem;
   letter-spacing: 10px;
   color: var(--blanc);
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
+
+footer .footer-phone {
+  color: #ffffff99;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.3s;
+}
+
+footer .footer-phone:hover { color: var(--blanc); }
 
 footer p {
   color: #ffffff55;
@@ -469,15 +610,107 @@ footer p {
   font-weight: 200;
 }
 
+/* ================= WHATSAPP FLOAT ================= */
+.whatsapp-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  background: var(--blanc);
+  color: var(--bleu-nuit);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  z-index: 90;
+  transition: all 0.4s ease;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 15px 40px rgba(255,255,255,0.3);
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 0 0 rgba(255,255,255,0.4); }
+  50% { box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 0 15px rgba(255,255,255,0); }
+}
+
 /* ================= MOBILE ================= */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   header { padding: 20px 25px; }
   header.scrolled { padding: 15px 25px; }
-  nav { gap: 18px; }
-  nav a { font-size: 0.6rem; letter-spacing: 2px; }
-  .logo { font-size: 1.2rem; letter-spacing: 5px; }
+
+  .burger { display: flex; }
+
+  nav {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 75%;
+    max-width: 320px;
+    height: 100vh;
+    height: 100dvh;
+    background: rgba(10, 20, 40, 0.98);
+    backdrop-filter: blur(25px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px 30px;
+  }
+
+  nav.active { right: 0; }
+
+  nav a {
+    font-size: 1rem;
+    letter-spacing: 4px;
+  }
+
+  nav a.contact-btn {
+    padding: 14px 30px;
+    font-size: 0.85rem !important;
+  }
+
+  .logo { font-size: 1.3rem; letter-spacing: 6px; }
+
+  .hero { padding: 100px 25px 50px; }
+  .hero::after { width: 250px; height: 250px; }
+
   .products { padding: 60px 25px 80px; }
+  .grid { grid-template-columns: 1fr; gap: 25px; }
+  .card { padding: 40px 25px; }
+
   .exclusive { padding: 80px 25px; }
+  .exclusive::before, .exclusive::after { width: 180px; height: 180px; }
+
+  .contact { padding: 80px 25px; }
+  .contact-phone {
+    padding: 20px 30px;
+    letter-spacing: 2px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .whatsapp-float {
+    width: 55px;
+    height: 55px;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo { font-size: 1.1rem; letter-spacing: 4px; }
+  .hero h1 { letter-spacing: 1px; }
+  .contact-phone { font-size: 1.1rem; padding: 18px 20px; }
 }
 </style>
 </head>
@@ -492,12 +725,18 @@ footer p {
 <!-- ================= HEADER ================= -->
 <header id="header">
   <div class="logo">HD<span>·SHOP</span></div>
-  <nav>
-    <a href="#">Accueil</a>
-    <a href="#collection">Collection</a>
-    <a href="#exclusif">Exclusif</a>
-    <a href="#">Contact</a>
+  <nav id="nav">
+    <a href="#" class="nav-link">Accueil</a>
+    <a href="#collection" class="nav-link">Collection</a>
+    <a href="#exclusif" class="nav-link">Exclusif</a>
+    <a href="#contact" class="nav-link">Contact</a>
+    <a href="tel:+22248529407" class="contact-btn">📞 +222 48 52 94 07</a>
   </nav>
+  <div class="burger" id="burger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </header>
 
 <!-- ================= HERO ================= -->
@@ -550,14 +789,34 @@ footer p {
 <section class="exclusive" id="exclusif">
   <h2>Accès <em>exclusif</em></h2>
   <p>Rejoignez notre cercle privé et accédez en avant-première aux collections les plus rares.</p>
-  <a href="#" class="btn">Devenir membre</a>
+  <a href="#contact" class="btn">Nous contacter</a>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <span class="label">Contactez-nous</span>
+  <h2>Parlons de votre <em>projet</em></h2>
+  <p>Notre équipe est à votre disposition pour toute demande d'information ou de commande personnalisée.</p>
+
+  <a href="tel:+22248529407" class="contact-phone">
+    <span class="icon">📞</span>
+    <span>+222 48 52 94 07</span>
+  </a>
+
+  <div class="contact-hours">Disponible 7j/7 — 9h à 21h</div>
 </section>
 
 <!-- ================= FOOTER ================= -->
 <footer>
   <div class="brand">HD · SHOP</div>
+  <a href="tel:+22248529407" class="footer-phone">📞 +222 48 52 94 07</a>
   <p>© 2025 — Tous droits réservés</p>
 </footer>
+
+<!-- ================= WHATSAPP FLOAT ================= -->
+<a href="https://wa.me/22248529407" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+  💬
+</a>
 
 <script>
 // Intro cinématique
@@ -578,28 +837,34 @@ window.addEventListener('scroll', () => {
   else header.classList.remove('scrolled');
 });
 
+// Menu burger
+const burger = document.getElementById('burger');
+const nav = document.getElementById('nav');
+
+burger.addEventListener('click', () => {
+  burger.classList.toggle('active');
+  nav.classList.toggle('active');
+});
+
+// Fermer le menu au clic d'un lien
+document.querySelectorAll('.nav-link, .contact-btn').forEach(link => {
+  link.addEventListener('click', () => {
+    burger.classList.remove('active');
+    nav.classList.remove('active');
+  });
+});
+
 // Animation cartes au scroll
 const cards = document.querySelectorAll('.card');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('show'), i * 200);
+      setTimeout(() => entry.target.classList.add('show'), i * 150);
     }
   });
 }, { threshold: 0.15 });
 
 cards.forEach(card => observer.observe(card));
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    const target = document.querySelector(link.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  });
-});
 </script>
 
 </body>

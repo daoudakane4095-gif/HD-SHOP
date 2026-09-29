@@ -1,1 +1,799 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <meta name="theme-color" content="#0057ff">
+  <meta name="description" content="HD SHOP — Boutique de vêtements. Style, élégance et qualité.">
+
+  <title>HD SHOP — Boutique de vêtements</title>
+
+  <style>
+    :root {
+      --blue: #0057ff;
+      --blue-dark: #003dcc;
+      --white: #ffffff;
+      --black: #07111f;
+      --gray: #f4f7fb;
+      --text: #101828;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       ANIMATION D'ENTRÉE
+    ========================= */
+
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      transition: opacity .7s ease, visibility .7s ease;
+    }
+
+    #loader.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-content {
+      text-align: center;
+      color: white;
+      animation: loaderAppear 1s ease forwards;
+    }
+
+    .loader-logo {
+      width: 105px;
+      height: 105px;
+      margin: auto;
+      border: 3px solid white;
+      border-radius: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 45px;
+      font-weight: 900;
+      letter-spacing: -4px;
+      box-shadow: 0 0 0 rgba(255,255,255,0);
+      animation: logoGlow 1.5s ease-in-out infinite alternate;
+    }
+
+    .loader-name {
+      margin-top: 22px;
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: 7px;
+    }
+
+    .loader-line {
+      width: 0;
+      height: 3px;
+      background: white;
+      margin: 16px auto 0;
+      border-radius: 20px;
+      animation: lineLoad 1.6s ease forwards;
+    }
+
+    @keyframes loaderAppear {
+      from {
+        opacity: 0;
+        transform: scale(.7);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes logoGlow {
+      from {
+        box-shadow: 0 0 10px rgba(255,255,255,.25);
+      }
+      to {
+        box-shadow: 0 0 45px rgba(255,255,255,.65);
+      }
+    }
+
+    @keyframes lineLoad {
+      from { width: 0; }
+      to { width: 150px; }
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 76px;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(0,87,255,.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      z-index: 1000;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--blue);
+      font-weight: 900;
+      font-size: 21px;
+      letter-spacing: 1px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      background: var(--blue);
+      color: white;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      letter-spacing: -3px;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #162033;
+      font-weight: 700;
+      font-size: 14px;
+      transition: .25s;
+    }
+
+    nav a:hover {
+      color: var(--blue);
+    }
+
+    .cart-btn {
+      background: var(--blue);
+      color: white !important;
+      padding: 11px 17px;
+      border-radius: 30px;
+    }
+
+    .menu-btn {
+      display: none;
+      border: none;
+      background: var(--blue);
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      font-size: 23px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      padding: 140px 7% 80px;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(0,87,255,.18), transparent 30%),
+        linear-gradient(135deg, #ffffff 0%, #f5f8ff 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 430px;
+      height: 430px;
+      border-radius: 50%;
+      background: rgba(0,87,255,.08);
+      right: -160px;
+      bottom: -160px;
+      filter: blur(3px);
+    }
+
+    .hero-content {
+      max-width: 680px;
+      position: relative;
+      z-index: 2;
+      animation: heroUp 1s ease .5s both;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(0,87,255,.09);
+      color: var(--blue);
+      padding: 9px 15px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 8vw, 92px);
+      line-height: .92;
+      letter-spacing: -5px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: var(--blue);
+    }
+
+    .hero p {
+      max-width: 530px;
+      color: #5d6878;
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border-radius: 13px;
+      padding: 15px 24px;
+      font-weight: 800;
+      transition: .3s;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+      box-shadow: 0 12px 30px rgba(0,87,255,.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      background: var(--blue-dark);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--blue);
+      border: 1px solid rgba(0,87,255,.2);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      border-color: var(--blue);
+    }
+
+    @keyframes heroUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================
+       COLLECTION
+    ========================= */
+
+    .section {
+      padding: 90px 6%;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-header small {
+      color: var(--blue);
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(34px, 5vw, 52px);
+      margin-top: 10px;
+      letter-spacing: -2px;
+    }
+
+    .section-header p {
+      color: #687385;
+      margin-top: 12px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .product {
+      background: white;
+      border: 1px solid #e8edf5;
+      border-radius: 22px;
+      overflow: hidden;
+      transition: .35s;
+    }
+
+    .product:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(16,24,40,.10);
+    }
+
+    .product-image {
+      height: 310px;
+      background:
+        linear-gradient(135deg, #eef4ff, #dfe9ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      font-weight: 900;
+      font-size: 50px;
+    }
+
+    .product-info {
+      padding: 22px;
+    }
+
+    .product-info h3 {
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .product-info p {
+      color: #6d7787;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price {
+      color: var(--blue);
+      font-size: 19px;
+      font-weight: 900;
+    }
+
+    .buy {
+      border: none;
+      background: var(--blue);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* =========================
+       BANNER
+    ========================= */
+
+    .banner {
+      margin: 20px 6% 80px;
+      padding: 55px 7%;
+      border-radius: 30px;
+      background: var(--blue);
+      color: white;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .banner h2 {
+      font-size: clamp(32px, 5vw, 55px);
+      margin-bottom: 12px;
+    }
+
+    .banner p {
+      opacity: .9;
+      margin-bottom: 25px;
+    }
+
+    .banner .btn {
+      background: white;
+      color: var(--blue);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #07111f;
+      color: white;
+      padding: 55px 6% 30px;
+      text-align: center;
+    }
+
+    footer .brand {
+      color: white;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    footer p {
+      color: #9ba7b8;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .copyright {
+      padding-top: 25px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: #718096;
+      font-size: 12px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 800px) {
+
+      header {
+        padding: 0 5%;
+      }
+
+      nav {
+        position: fixed;
+        top: 76px;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 25px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+        box-shadow: 0 15px 30px rgba(0,0,0,.08);
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      nav a {
+        padding: 15px;
+        border-radius: 10px;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero {
+        padding: 130px 6% 70px;
+        min-height: 90vh;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+      }
+
+      .product-image {
+        height: 280px;
+      }
+
+      .section {
+        padding: 70px 5%;
+      }
+
+      .banner {
+        margin-left: 5%;
+        margin-right: 5%;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .loader-name {
+        font-size: 22px;
+        letter-spacing: 5px;
+      }
+
+      .loader-logo {
+        width: 90px;
+        height: 90px;
+        font-size: 38px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       LOADER
+  ========================== -->
+
+  <div id="loader">
+    <div class="loader-content">
+      <div class="loader-logo">HD</div>
+      <div class="loader-name">HD SHOP</div>
+      <div class="loader-line"></div>
+    </div>
+  </div>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header>
+
+    <a href="#accueil" class="brand">
+      <span class="brand-mark">HD</span>
+      <span>HD SHOP</span>
+    </a>
+
+    <button class="menu-btn" id="menuBtn">☰</button>
+
+    <nav id="nav">
+      <a href="#accueil">Accueil</a>
+      <a href="#collection">Collection</a>
+      <a href="#nouveautes">Nouveautés</a>
+      <a href="#contact">Contact</a>
+      <a href="#panier" class="cart-btn">🛒 Panier <span id="cartCount">0</span></a>
+    </nav>
+
+  </header>
+
+  <!-- =========================
+       ACCUEIL
+  ========================== -->
+
+  <main>
+
+    <section class="hero" id="accueil">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">HD SHOP • FASHION</span>
+
+        <h1>
+          Ton style.<br>
+          <span>Ton identité.</span>
+        </h1>
+
+        <p>
+          Bienvenue chez HD SHOP, votre boutique de vêtements
+          pensée pour celles et ceux qui veulent associer style,
+          élégance et personnalité.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#collection" class="btn btn-primary">
+            Découvrir la collection
+          </a>
+
+          <a href="#contact" class="btn btn-secondary">
+            Nous contacter
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         COLLECTION
+    ========================== -->
+
+    <section class="section" id="collection">
+
+      <div class="section-header">
+        <small>NOTRE COLLECTION</small>
+        <h2>Les essentiels HD</h2>
+        <p>Une sélection pensée pour ton style.</p>
+      </div>
+
+      <div class="products">
+
+        <article class="product">
+          <div class="product-image">HD</div>
+
+          <div class="product-info">
+            <h3>T-Shirt HD Classic</h3>
+            <p>Un essentiel simple et élégant.</p>
+
+            <div class="product-bottom">
+              <span class="price">Prix à venir</span>
+              <button class="buy" onclick="addToCart('T-Shirt HD Classic')">
+                Ajouter
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-image">HD</div>
+
+          <div class="product-info">
+            <h3>HD Signature</h3>
+            <p>Une pièce pensée pour se démarquer.</p>
+
+            <div class="product-bottom">
+              <span class="price">Prix à venir</span>
+              <button class="buy" onclick="addToCart('HD Signature')">
+                Ajouter
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-image">HD</div>
+
+          <div class="product-info">
+            <h3>HD Premium</h3>
+            <p>Un style premium pour toutes les occasions.</p>
+
+            <div class="product-bottom">
+              <span class="price">Prix à venir</span>
+              <button class="buy" onclick="addToCart('HD Premium')">
+                Ajouter
+              </button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         BANNER
+    ========================== -->
+
+    <section class="banner" id="nouveautes">
+
+      <h2>Nouvelle collection.</h2>
+
+      <p>
+        Reste connecté pour découvrir les prochaines pièces HD SHOP.
+      </p>
+
+      <a href="#contact" class="btn">
+        Découvrir HD SHOP
+      </a>
+
+    </section>
+
+  </main>
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer id="contact">
+
+    <a href="#accueil" class="brand">
+      <span class="brand-mark">HD</span>
+      <span>HD SHOP</span>
+    </a>
+
+    <p>
+      Boutique de vêtements • Style • Élégance • Qualité
+    </p>
+
+    <div class="copyright">
+      © 2026 HD SHOP — Tous droits réservés.
+    </div>
+
+  </footer>
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    /* Animation d'entrée */
+
+    window.addEventListener("load", function() {
+      setTimeout(function() {
+        document.getElementById("loader").classList.add("hide");
+      }, 1900);
+    });
+
+
+    /* Menu mobile */
+
+    const menuBtn = document.getElementById("menuBtn");
+    const nav = document.getElementById("nav");
+
+    menuBtn.addEventListener("click", function() {
+      nav.classList.toggle("active");
+
+      if (nav.classList.contains("active")) {
+        menuBtn.textContent = "✕";
+      } else {
+        menuBtn.textContent = "☰";
+      }
+    });
+
+
+    /* Fermer le menu après clic */
+
+    document.querySelectorAll("nav a").forEach(function(link) {
+      link.addEventListener("click", function() {
+        nav.classList.remove("active");
+        menuBtn.textContent = "☰";
+      });
+    });
+
+
+    /* Panier */
+
+    let cart = 0;
+
+    function addToCart(productName) {
+      cart++;
+      document.getElementById("cartCount").textContent = cart;
+
+      alert(productName + " a été ajouté au panier 🛒");
+    }
+
+  </script>
+
+</body>
+</html>

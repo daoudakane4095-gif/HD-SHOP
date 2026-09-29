@@ -6,29 +6,29 @@
 <title>HD-SHOP — Maison de Luxe</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; font }
 
 :root {
-  --bleu-nuit: #0a1428;
-  --bleu-profond: #0f1e3d;
-  --bleu-accent: #1a3a6b;
-  --blanc: #ffffff;
-  --blanc-casse: #f8f9fb;
+  --bleu-size-nuit: #0a142:8;
+  --bleu-pro clampfond: #0(f1e3d;
+ 2 --bleu-accent:. #1a3a56b;
+  --blanc:rem #ffffff;
   --gris-bleu: #8899aa;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior,: smooth; }
 
 body {
-  background: var(--bleu-nuit);
-  color: var(--blanc);
-  font-family: 'Montserrat', sans-serif;
-  overflow-x: hidden;
-  font-weight: 300;
-  letter-spacing: 0.5px;
+  background:  var(--bleu-nuit);
+ 14 color: var(--blanc);
+  fontvw-family: 'Montserrat', sans-serif;
+  overflow-x:, hidden;
+  font-weight : 300;
+  letter7-spacing: 0.5rempx;
 }
 
-h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+h1, h);
+2, h3 { font-family : 'Cormorant Garamond', ser fontif; font-weight: 400-weight; }
 
 /* ================= INTRO ================= */
 #intro {
@@ -39,17 +39,16 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
-  transition: opacity 1.5s ease, visibility 1.5s ease;
+:  z-index: 9999;
+  transition: opacity  1.5s ease, visibility 1.5s ease;
   padding: 20px;
 }
 
 #intro.hide { opacity: 0; visibility: hidden; }
 
 .intro-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.5rem, 14vw, 7rem);
-  font-weight: 300;
+  font-family: 'Cormorant Garam300ond', serif;
+ ;
   letter-spacing: clamp(8px, 3vw, 20px);
   color: var(--blanc);
   position: relative;
@@ -150,7 +149,6 @@ nav a::after {
 
 nav a:hover::after { width: 100%; }
 
-/* Bouton contact header */
 .contact-btn {
   border: 1px solid var(--blanc);
   padding: 10px 20px;
@@ -491,7 +489,6 @@ nav a:hover::after { width: 100%; }
   padding: 120px 40px;
   background: var(--bleu-nuit);
   text-align: center;
-  position: relative;
 }
 
 .contact .label {
@@ -523,7 +520,7 @@ nav a:hover::after { width: 100%; }
   font-weight: 200;
 }
 
-.contact-phone {
+.contact-whatsapp {
   display: inline-flex;
   align-items: center;
   gap: 20px;
@@ -532,16 +529,17 @@ nav a:hover::after { width: 100%; }
   text-decoration: none;
   color: var(--blanc);
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.2rem, 3vw, 2rem);
-  letter-spacing: 4px;
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
+  letter-spacing: 3px;
   font-weight: 400;
   transition: all 0.5s ease;
   position: relative;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.02);
+  z-index: 1;
 }
 
-.contact-phone::before {
+.contact-whatsapp::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -551,18 +549,17 @@ nav a:hover::after { width: 100%; }
   z-index: -1;
 }
 
-.contact-phone:hover {
+.contact-whatsapp:hover {
   color: var(--bleu-nuit);
   border-color: var(--blanc);
   transform: translateY(-3px);
   box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
-.contact-phone:hover::before { transform: translateY(0); }
+.contact-whatsapp:hover::before { transform: translateY(0); }
 
-.contact-phone .icon {
-  font-size: 1.5rem;
-  filter: grayscale(1) brightness(2);
+.contact-whatsapp .icon {
+  font-size: 1.6rem;
 }
 
 .contact-hours {
@@ -590,7 +587,7 @@ footer .brand {
   margin-bottom: 20px;
 }
 
-footer .footer-phone {
+footer .footer-link {
   color: #ffffff99;
   font-size: 0.85rem;
   letter-spacing: 3px;
@@ -600,7 +597,7 @@ footer .footer-phone {
   transition: color 0.3s;
 }
 
-footer .footer-phone:hover { color: var(--blanc); }
+footer .footer-link:hover { color: var(--blanc); }
 
 footer p {
   color: #ffffff55;
@@ -617,15 +614,15 @@ footer p {
   right: 25px;
   width: 60px;
   height: 60px;
-  background: var(--blanc);
-  color: var(--bleu-nuit);
+  background: #25D366;
+  color: var(--blanc);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   text-decoration: none;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
   z-index: 90;
   transition: all 0.4s ease;
   animation: pulse 2s ease-in-out infinite;
@@ -633,12 +630,12 @@ footer p {
 
 .whatsapp-float:hover {
   transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 15px 40px rgba(255,255,255,0.3);
+  box-shadow: 0 15px 40px rgba(37, 211, 102, 0.7);
 }
 
 @keyframes pulse {
-  0%, 100% { box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 0 0 rgba(255,255,255,0.4); }
-  50% { box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 0 15px rgba(255,255,255,0); }
+  0%, 100% { box-shadow: 0 10px 30px rgba(37,211,102,0.5), 0 0 0 0 rgba(37,211,102,0.6); }
+  50% { box-shadow: 0 10px 30px rgba(37,211,102,0.5), 0 0 0 18px rgba(37,211,102,0); }
 }
 
 /* ================= MOBILE ================= */
@@ -668,10 +665,7 @@ footer p {
 
   nav.active { right: 0; }
 
-  nav a {
-    font-size: 1rem;
-    letter-spacing: 4px;
-  }
+  nav a { font-size: 1rem; letter-spacing: 4px; }
 
   nav a.contact-btn {
     padding: 14px 30px;
@@ -691,7 +685,7 @@ footer p {
   .exclusive::before, .exclusive::after { width: 180px; height: 180px; }
 
   .contact { padding: 80px 25px; }
-  .contact-phone {
+  .contact-whatsapp {
     padding: 20px 30px;
     letter-spacing: 2px;
     flex-direction: column;
@@ -703,14 +697,14 @@ footer p {
     height: 55px;
     bottom: 20px;
     right: 20px;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 }
 
 @media (max-width: 400px) {
   .logo { font-size: 1.1rem; letter-spacing: 4px; }
   .hero h1 { letter-spacing: 1px; }
-  .contact-phone { font-size: 1.1rem; padding: 18px 20px; }
+  .contact-whatsapp { font-size: 1rem; padding: 18px 20px; }
 }
 </style>
 </head>
@@ -730,7 +724,7 @@ footer p {
     <a href="#collection" class="nav-link">Collection</a>
     <a href="#exclusif" class="nav-link">Exclusif</a>
     <a href="#contact" class="nav-link">Contact</a>
-    <a href="tel:+22248529407" class="contact-btn">📞 +222 48 52 94 07</a>
+    <a href="https://wa.me/22248529407?text=Bonjour%20HD-SHOP%20%F0%9F%91%8B%2C%20je%20viens%20de%20votre%20site%20web%20et%20je%20souhaite%20avoir%20des%20informations%20sur%20vos%20produits." target="_blank" class="contact-btn nav-link">💬 WhatsApp</a>
   </nav>
   <div class="burger" id="burger">
     <span></span>
@@ -789,18 +783,20 @@ footer p {
 <section class="exclusive" id="exclusif">
   <h2>Accès <em>exclusif</em></h2>
   <p>Rejoignez notre cercle privé et accédez en avant-première aux collections les plus rares.</p>
-  <a href="#contact" class="btn">Nous contacter</a>
+  <a href="https://wa.me/22248529407?text=Bonjour%20HD-SHOP%20%E2%9C%A8%2C%20je%20souhaite%20rejoindre%20le%20cercle%20priv%C3%A9%20exclusif." target="_blank" class="btn">Rejoindre le cercle</a>
 </section>
 
 <!-- ================= CONTACT ================= -->
 <section class="contact" id="contact">
   <span class="label">Contactez-nous</span>
   <h2>Parlons de votre <em>projet</em></h2>
-  <p>Notre équipe est à votre disposition pour toute demande d'information ou de commande personnalisée.</p>
+  <p>Notre équipe est à votre écoute sur WhatsApp pour toute demande d'information ou de commande personnalisée.</p>
 
-  <a href="tel:+22248529407" class="contact-phone">
-    <span class="icon">📞</span>
-    <span>+222 48 52 94 07</span>
+  <a href="https://wa.me/22248529407?text=Bonjour%20HD-SHOP%20%F0%9F%91%8B%2C%20je%20viens%20de%20votre%20site%20web%20et%20je%20souhaite%20avoir%20des%20informations%20sur%20vos%20produits." 
+     target="_blank" 
+     class="contact-whatsapp">
+    <span class="icon">💬</span>
+    <span>Discuter sur WhatsApp</span>
   </a>
 
   <div class="contact-hours">Disponible 7j/7 — 9h à 21h</div>
@@ -809,17 +805,24 @@ footer p {
 <!-- ================= FOOTER ================= -->
 <footer>
   <div class="brand">HD · SHOP</div>
-  <a href="tel:+22248529407" class="footer-phone">📞 +222 48 52 94 07</a>
+  <a href="https://wa.me/22248529407?text=Bonjour%20HD-SHOP%20%F0%9F%91%8B%2C%20je%20viens%20de%20votre%20site%20web." 
+     target="_blank" 
+     class="footer-link">
+    💬 +222 48 52 94 07
+  </a>
   <p>© 2025 — Tous droits réservés</p>
 </footer>
 
-<!-- ================= WHATSAPP FLOAT ================= -->
-<a href="https://wa.me/22248529407" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+<!-- ================= WHATSAPP FLOTTANT ================= -->
+<a href="https://wa.me/22248529407?text=Bonjour%20HD-SHOP%20%F0%9F%91%8B%2C%20je%20viens%20de%20votre%20site%20web%20et%20je%20souhaite%20avoir%20des%20informations%20sur%20vos%20produits." 
+   target="_blank" 
+   class="whatsapp-float" 
+   aria-label="Contacter sur WhatsApp">
   💬
 </a>
 
 <script>
-// Intro cinématique
+// ============ INTRO CINÉMATIQUE ============
 window.addEventListener('load', () => {
   setTimeout(() => {
     document.getElementById('introLogo').classList.add('expand');
@@ -830,14 +833,14 @@ window.addEventListener('load', () => {
   }, 3500);
 });
 
-// Header au scroll
+// ============ HEADER AU SCROLL ============
 window.addEventListener('scroll', () => {
   const header = document.getElementById('header');
   if (window.scrollY > 50) header.classList.add('scrolled');
   else header.classList.remove('scrolled');
 });
 
-// Menu burger
+// ============ MENU BURGER ============
 const burger = document.getElementById('burger');
 const nav = document.getElementById('nav');
 
@@ -847,14 +850,14 @@ burger.addEventListener('click', () => {
 });
 
 // Fermer le menu au clic d'un lien
-document.querySelectorAll('.nav-link, .contact-btn').forEach(link => {
+document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', () => {
     burger.classList.remove('active');
     nav.classList.remove('active');
   });
 });
 
-// Animation cartes au scroll
+// ============ ANIMATION CARTES AU SCROLL ============
 const cards = document.querySelectorAll('.card');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
